@@ -30,7 +30,7 @@ class Sortie
     /**
      * @ORM\Column(type="time")
      */
-    private $durée;
+    private $duree;
 
     /**
      * @ORM\Column(type="date")
@@ -50,7 +50,7 @@ class Sortie
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $état;
+    private $etat;
 
     public function getId(): ?int
     {
@@ -81,14 +81,14 @@ class Sortie
         return $this;
     }
 
-    public function getDurée(): ?\DateTimeInterface
+    public function getDuree(): ?\DateTimeInterface
     {
-        return $this->durée;
+        return $this->duree;
     }
 
-    public function setDurée(\DateTimeInterface $durée): self
+    public function setDuree(\DateTimeInterface $duree): self
     {
-        $this->durée = $durée;
+        $this->duree = $duree;
 
         return $this;
     }
@@ -129,14 +129,14 @@ class Sortie
         return $this;
     }
 
-    public function getétat(): ?string
+    public function getetat(): ?string
     {
-        return $this->état;
+        return $this->etat;
     }
 
-    public function setétat(string $état): self
+    public function setetat(string $etat): self
     {
-        $this->état = $état;
+        $this->etat = $etat;
 
         return $this;
     }
