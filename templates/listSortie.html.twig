@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/4-col-portfolio.css" rel="stylesheet">
+
+</head>
+<header>
+    <!-- La NAVBAR -->
+        <nav class="navbar navbar-expand-sm bg-light">
+
+            <div class="container">
+
+                <a class="col-8 navbar-brand text-dark" href="#">Sortir.com</a>
+                <div class="col-4">
+                    <a class="text-dark" href="#">Villes</a>
+
+                    <a class="text-dark" href="#">Campus</a>
+                    <a class="text-dark" href="#">Accueil</a>
+                    <a class="text-dark" href="#">Mon profil</a>
+                    <a class="text-dark" href="#">Se déconnecter</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <body>
+        <!-- Date + Participant -->
+        <div class="container">
+        <div style="text-align: right">
+
+            Date du jour : <div>{{ "+1 year"|date('d-m-Y') }}</div>
+            <br>
+            Participant :
+            </div>
+        </div>
+    <br>
+    <!-- Boutton Créer sortie -->
+
+
+        <div class="container ">
+
+            <h4>Filtrer les sorties</h4>
+            <div class="col-4">
+                Campus : <select name="Campus" id="pet-select">
+                    <option value="aaa">aaa</option>
+                        </select>
+                <br>
+
+                Le nom de la sortie contient : <input type="search" id="site-search"aria-label="Search through site content">
+
+                <br>
+                Entre <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"> et <input type="date" id="end" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+
+            </div>
+            <br>
+            <div class="col-4">
+                <input type="checkbox"><label>Sorties dont je suis l'organisateur</label>
+                <br>
+                <input type="checkbox"><label>Sorties auxquelles je suis inscrit/e</label>
+                <br>
+                <input type="checkbox"><label>Sorties auxquelles je ne suis pas inscrit/e</label>
+                <br>
+                <input type="checkbox"><label>Sorties passées</label>
+
+            </div>
+
+
+            <br>
+            <div>
+                <button type="button" class="btn btn-outline-secondary">Filtrer</button>
+
+            </div>
+        </div>
+        </div>
+
+
+<br><br>
+
+    <!-- Boutton Créer sortie -->
+    <div class="container">
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>Nom de la sortie</th>
+                <th>Date de la sortie</th>
+                <th>Clôture</th>
+                <th>Inscrits/Places</th>
+                <th>Etat</th>
+                <th>Inscrit</th>
+                <th>Organisateur</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sortie in sorties %}
+            <tr>
+                <td>{{ sortie.nom }}</td>
+                <td>{{ sortie.dateHeureDebut|date('d-m-Y') }}</td>
+                <td>{{ sortie.dateLimiteInscription|date('d-m-Y') }}</td>
+                <td>/{{  sortie.nbInscriptionsMax }}</td>
+                <td>{{ sortie.etat }}</td>
+                <td>{{sortie.nom}}</td>
+                <td>{{ sortie.nom }}</td>
+                <td><a href="#">Afficher</a> </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    <button type="button" class="btn btn-outline-secondary">Créer une sortie</button>
+    </div>
+
+
+
+
+</body>
+</html>
