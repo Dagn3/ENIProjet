@@ -23,9 +23,10 @@ class CreationsortieType extends AbstractType
 //            ->add('organisateur')
 //            ->add('campus')
 //            ->add('etatSortie')
-   //         ->add('lieu')
+//            ->add('lieu')
         ;
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {

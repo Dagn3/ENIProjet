@@ -42,7 +42,8 @@ class CreationsortieController extends AbstractController
 
         return $this ->render("/extends.html.twig", ['sortieForm'=>$sortieForm->createView()
             ]);
-        
+
+
     }
 
 
