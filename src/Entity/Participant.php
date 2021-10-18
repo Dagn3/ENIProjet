@@ -19,6 +19,7 @@ class Participant
      */
     private $id;
 
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -78,6 +79,13 @@ class Participant
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getNom(): ?string
@@ -175,6 +183,8 @@ class Participant
 
         return $this;
     }
+
+
 
     /**
      * @return Collection|Sortie[]

@@ -2,27 +2,22 @@
 
 namespace App\Form;
 
-use App\Entity\Campus;
+
 use App\Entity\Lieu;
-use App\Entity\Sortie;
-use App\Entity\Ville;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CreationsortieType extends AbstractType
+class LieuType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('dateHeureDebut')
-            ->add('duree')
-            ->add('dateLimiteInscription')
-            ->add('nbInscriptionsMax')
-            ->add('infosSortie')
-            ->add('etat')
-
+            ->add('nom', TextType::class, ['label' => 'Lieu'])
+            ->add('rue')
+            ->add('latitude', null, ['required'=>false])
+            ->add('longitude', null, ['required'=>false])
 
 
         ;
@@ -34,7 +29,7 @@ class CreationsortieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Sortie::class
+            'data_class' => Lieu::class
 
 
 

@@ -1,0 +1,8 @@
+label{
+    display: block;
+}
+
+input,
+select{
+    margin-bottom: 1rem;
+}

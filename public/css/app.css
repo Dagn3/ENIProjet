@@ -1,0 +1,28 @@
+body {
+    background-color: #CED4DA;
+    font-family: 'Josefin Sans', serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 5px;
+}
+
+main {
+    flex: 1;
+}
+
+label {
+    display: block;
+}
+
+input,
+textarea,
+select {
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 250px;
+    max-width: 50%;
+}
+

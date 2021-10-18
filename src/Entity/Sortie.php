@@ -63,22 +63,22 @@ class Sortie
     /**
      * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="organisateur")
      */
-  //  private $organisateur;
+    private $organisateur;
 
     /**
      * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="siteOrganisateur")
      */
-    //private $campus;
+    private $campus;
 
     /**
      * @ORM\ManyToOne(targetEntity=Etat::class, inversedBy="sorties")
      */
-   // private $etatSortie;
+    private $etatSortie;
 
     /**
      * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="sorties")
      */
-   // private $lieu;
+    private $lieu;
 
     public function __construct()
     {

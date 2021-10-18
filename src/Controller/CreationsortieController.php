@@ -3,8 +3,14 @@
 namespace App\Controller;
 
 
+use App\Entity\Campus;
+use App\Entity\Lieu;
 use App\Entity\Sortie;
+use App\Entity\Ville;
+use App\Form\CampusType;
 use App\Form\CreationsortieType;
+use App\Form\LieuType;
+use App\Form\VilleType;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,34 +20,76 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CreationsortieController extends AbstractController
 {
+
+
     /**
-     * @Route("/", name="creationsortie")
+     * @Route ("/accueil", name="accueil")
      */
-    public function creerSortie(): Response
+    public function sortie(): Response
     {
-        return $this->render("/extends.html.twig");
+
+
+
+        return $this->render('success.html.twig',[
+        ]);
     }
+
+
 
     /**
      * @Route ("/create_sortie", name="createform")
      */
-    public function creerFormulaire (Request $request, EntityManagerInterface $entityManager):Response
+    public function creerFormulaire(Request $request, EntityManagerInterface $entityManager): Response
     {
-
+        $campus = new Campus();
         $sortie = new Sortie();
+        $lieu = new Lieu();
+        $ville = new Ville();
         $sortieForm = $this->createForm(CreationsortieType::class, $sortie);
+        $campusForm = $this->createForm(CampusType::class, $campus);
+        $lieuForm = $this->createForm(LieuType::class, $lieu);
+        $villeForm = $this->createForm(VilleType::class, $ville);
 
         $sortieForm->handleRequest($request);
+        $campusForm->handleRequest($request);
+        $lieuForm->handleRequest($request);
+        $villeForm->handleRequest($request);
 
-        if ($sortieForm->isSubmitted()){
-           $entityManager->persist($sortie);
-           $entityManager->flush();
+        if ($sortieForm && $campusForm && $lieuForm && $villeForm->isSubmitted()) {
 
-           $this->addFlash('success', 'Une nouvelle sortie a été créé.');
+
+            $entityManager->persist($lieu);
+            $entityManager->persist($campus);
+            $entityManager->persist($ville);
+            $entityManager->persist($sortie);
+
+            $entityManager->flush();
+
+//            if ($campusForm->isSubmitted()) {
+//                $entityManager->persist($campus);
+//               // $entityManager->flush();
+//
+//                if ($lieuForm->isSubmitted()) {
+//                    $entityManager->persist($lieu);
+//                   // $entityManager->flush();
+//
+//                    if ($villeForm->isSubmitted()) {
+//                        $entityManager->persist($ville);
+//                       $entityManager->flush();
+
+                        $this->addFlash('success', 'Une nouvelle sortie a été créé.');
+                        return $this->redirectToRoute('list_sortie');
+
+
+
+
         }
 
-        return $this ->render("/extends.html.twig", ['sortieForm'=>$sortieForm->createView()
-            ]);
+                return $this->render("/extends.html.twig", ['sortieForm' => $sortieForm->createView(),
+                    'campusForm' => $campusForm->createView(), 'lieuForm' =>$lieuForm->createView(),
+                    'villeForm' => $villeForm->createView()
+
+                ]);
 
 
     }
@@ -50,3 +98,4 @@ class CreationsortieController extends AbstractController
 
 
 }
+

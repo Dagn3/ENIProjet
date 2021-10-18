@@ -15,31 +15,31 @@
 
 </head>
 <header>
-    <!-- La NAVBAR -->
-        <nav class="navbar navbar-expand-sm bg-light">
+<!-- La NAVBAR -->
+    <nav class="navbar navbar-expand-sm bg-light">
 
-            <div class="container">
+        <div class="container">
 
-                <a class="col-8 navbar-brand text-dark" href="#">Sortir.com</a>
-                <div class="col-4">
-                    <a class="text-dark" href="#">Villes</a>
+            <a class="col-8 navbar-brand text-dark" href="#">Sortir.com</a>
+            <div class="col-4">
+                <a class="text-dark" href="#">Villes</a>
 
-                    <a class="text-dark" href="#">Campus</a>
-                    <a class="text-dark" href="#">Accueil</a>
-                    <a class="text-dark" href="#">Mon profil</a>
-                    <a class="text-dark" href="#">Se déconnecter</a>
-                </div>
+                <a class="text-dark" href="#">Campus</a>
+                <a class="text-dark" href="#">Accueil</a>
+                <a class="text-dark" href="#">Mon profil</a>
+                <a class="text-dark" href="#">Se déconnecter</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
     <body>
         <!-- Date + Participant -->
         <div class="container">
         <div style="text-align: right">
 
-            Date du jour : <div>{{ "+1 year"|date('d-m-Y') }}</div>
+            Date du jour : {{ "today"|date('d-m-Y') }}
             <br>
-            Participant :
+            Participant : {{ user.username }}
             </div>
         </div>
     <br>
@@ -110,14 +110,31 @@
                 <td>{{ sortie.etat }}</td>
                 <td>{{sortie.nom}}</td>
                 <td>{{ sortie.nom }}</td>
-                <td><a href="#">Afficher</a> </td>
+                <td>
+                    <a href="details/{{ sortie.id }}">Afficher</a>
+
+                    {% if participants.sortie.contains(user.id) is not defined  %}
+
+                        <a href="regSortie/{{ sortie.id }}">S'inscrire</a>
+
+
+
+                        {% else %}
+                            <a href="#">Se désister</a>
+
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
+
             </tbody>
         </table>
 
-    <button type="button" class="btn btn-outline-secondary">Créer une sortie</button>
+        <a href="{{ path('createform') }}"> <button type="button" class="btn btn-outline-secondary">Créer une sortie</button></a>
     </div>
+
+
+
 
 
 
