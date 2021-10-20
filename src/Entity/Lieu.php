@@ -46,6 +46,7 @@ class Lieu
 
     /**
      * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="lieus")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $ville;
 

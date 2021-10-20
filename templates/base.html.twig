@@ -23,7 +23,7 @@
     <header>
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{path('test_pageTest')}}">
+                <a class="navbar-brand" href="{{path('list_sortie')}}">
                     <img src="{{ asset('img/logo_eni.png') }}" alt="" width="54" height="54" class="d-inline-block align-text-top">
                     Sortir.com
                 </a>
@@ -44,7 +44,7 @@
 
                 #}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('test_pageTest') }}" title="Accueil">Accueil</a>
+                    <a class="nav-link" href="{{ path('list_sortie') }}" title="Accueil">Accueil</a>
                 </li>
                 {% if app.user %}
                     <li class="nav-item">
@@ -81,7 +81,7 @@
     <footer class="fixed-bottom py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item">
-                <a href="{{ path('test_pageTest') }}" class="nav-link px-2 text-muted" title="Accueil">Accueil</a>
+                <a href="{{ path('list_sortie') }}" class="nav-link px-2 text-muted" title="Accueil">Accueil</a>
             </li>
         </ul>
         <p class="text-center text-muted">&copy; {{ "now"|date("Y") }} : EDWMC058 - Team 2</p>

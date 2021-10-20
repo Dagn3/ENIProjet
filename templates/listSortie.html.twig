@@ -125,7 +125,7 @@
                     <a href="details/{{ sortie.id }}">Afficher</a>
 
                     {% if sortie.organisateur == participant %}
-                    <a href="">Supprimer</a>
+                    <a href="delete/{{ sortie.id }}">Supprimer</a>
                     {% else %}
                     {% if sortie.participants.contains(participant) %}
 

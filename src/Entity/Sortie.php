@@ -62,21 +62,25 @@ class Sortie
 
     /**
      * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="organisateur")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $organisateur;
 
     /**
      * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="siteOrganisateur")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $campus;
 
     /**
      * @ORM\ManyToOne(targetEntity=Etat::class, inversedBy="sorties")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $etatSortie;
 
     /**
      * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="sorties")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $lieu;
 
