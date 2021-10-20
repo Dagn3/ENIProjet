@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
@@ -53,37 +54,22 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?User
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 
-    public function findByPseudo($pseudo)
+    public function findOneByPseudo($pseudo): ?User
     {
 
 
 
         //version QueryBuilder
-        $queryBuilder = $this->createQueryBuilder('s');
+        $queryBuilder = $this->createQueryBuilder('u');
 
-        $queryBuilder->leftJoin('s.seasons', 'seas')
-            ->addSelect('seas');
+        $queryBuilder->leftJoin('u.username', 'user')
+            ->addSelect('user');
 
-        $queryBuilder->andWhere('s = $pseudo');
+        $queryBuilder->andWhere('s.username = $pseudo');
         $query = $queryBuilder->getQuery();
 
-
-        $query->setMaxResults(50);
-
-        $user = new User();
-        $user = $query;
+        $user = new User($query);
 
         return $user;
     }

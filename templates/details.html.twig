@@ -47,12 +47,12 @@
             Description et infos : {{ sortie.infosSortie }} <br>
         </div>
         <div class="col">
-            Campus : <br>
-            Lieu : <br>
-            Rue : <br>
-            Code postal : <br>
-            Latitude : <br>
-            Longitude : <br>
+            Campus : {{ sortie.campus.nom}} <br>
+            Lieu : {{ sortie.lieu.nom}} <br>
+            Rue : {{ sortie.lieu.rue }}<br>
+            Code postal : {{ sortie.lieu.ville.codePostal }}<br>
+            Latitude : {{ sortie.lieu.latitude }}<br>
+            Longitude :{{ sortie.lieu.longitude }}<br>
         </div>
         </div>
     </div>
@@ -66,7 +66,28 @@
 
 
 
+    <div class="container col-4">
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Nom</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for participant in sortie.participants %}
+                <tr>
+                    <td>{{ participant.username }}</td>
+                    <td>{{ participant.prenom }} {{ participant.nom }}</td>{{ participant.inscrit }}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
+    <div class="container">
+    <a href="{{ path('list_sortie') }}"> <button type="button" class="btn btn-outline-secondary">Retour</button></a>
+    </div>
 
 </body>
 </html>

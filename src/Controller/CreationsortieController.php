@@ -57,10 +57,14 @@ class CreationsortieController extends AbstractController
 
         if ($sortieForm && $campusForm && $lieuForm && $villeForm->isSubmitted()) {
 
+            $sortie->setCampus($campus);
+            $lieu->setVille($ville);
+            $sortie->setLieu($lieu);
 
-            $entityManager->persist($lieu);
+
             $entityManager->persist($campus);
             $entityManager->persist($ville);
+            $entityManager->persist($lieu);
             $entityManager->persist($sortie);
 
             $entityManager->flush();

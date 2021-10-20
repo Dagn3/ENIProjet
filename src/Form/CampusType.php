@@ -18,7 +18,7 @@ public function buildForm(FormBuilderInterface $builder, array $options): void
 $builder
 ->add('nom', ChoiceType::class, ['label'=> 'Campus', 'choices'=> [
     'saint herblain' => 'saint herblain',
-    'chartres de bretagne' => 'chartre de bretagne',
+    'chartres de bretagne' => 'chartres de bretagne',
     'la roche sur yon' => 'la roche sur yon'
 ],
     'multiple'=>false

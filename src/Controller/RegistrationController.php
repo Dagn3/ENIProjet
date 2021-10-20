@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Participant;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
@@ -38,6 +39,19 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
+            $participant = new Participant();
+
+            $participant->setUsername($user->getUsername());
+            $participant->setNom($user->getNom());
+            $participant->setPrenom($user->getPrenom());
+            $participant->setTelephone($user->getTelephone());
+            $participant->setMail($user->getMail());
+            $participant->setMotPasse($user->getPassword());
+            $participant->setAdministrateur(true);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($participant);
+            $entityManager->flush();
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
@@ -46,6 +60,11 @@ class RegistrationController extends AbstractController
                 'main' // firewall name in security.yaml
             );
         }
+
+
+
+
+
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
