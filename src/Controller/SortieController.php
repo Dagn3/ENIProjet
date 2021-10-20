@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Entity\User;
-use App\Repository\CampusRepository;
 use App\Repository\ParticipantRepository;
 use App\Repository\UserRepository;
 use mysql_xdevapi\DatabaseObject;
@@ -21,14 +20,14 @@ class SortieController extends AbstractController
     /**
      * @Route("/sortie", name="list_sortie")
      */
-    public function sortie(SortieRepository $SortieRepository, ParticipantRepository $participantRepository, CampusRepository $campusRepo){
+    public function sortie(SortieRepository $SortieRepository, ParticipantRepository $participantRepository){
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $participant = $participantRepository->find($user->getId());
-        $campus = $campusRepo->findAll();
 
 
-        return $this->render('listSortie.html.twig',[ 'sorties'=>$SortieRepository->findALl(), 'user'=>$user, "participant"=> $participant, 'campus'=>$campus
+
+        return $this->render('listSortie.html.twig',[ 'sorties'=>$SortieRepository->findALl(), 'user'=>$user, "participant"=> $participant
 
         ]);
     }
@@ -76,9 +75,7 @@ class SortieController extends AbstractController
 
 
 
-        return $this->render('listSortie.html.twig', ['sorties' => $SortieRepository->findALl(), 'user' => $user
-
-        ]);
+        return $this->redirectToRoute('list_sortie');
     }
 
     /**
@@ -101,10 +98,8 @@ class SortieController extends AbstractController
         $entityManager->flush();
 
 
+        return $this->redirectToRoute('list_sortie');
 
-
-        return $this->render('listSortie.html.twig', ['sorties' => $SortieRepository->findALl(), 'user' => $user
-
-        ]);
     }
+
 }

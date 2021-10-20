@@ -11,6 +11,7 @@ use App\Form\CampusType;
 use App\Form\CreationsortieType;
 use App\Form\LieuType;
 use App\Form\VilleType;
+use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +40,7 @@ class CreationsortieController extends AbstractController
     /**
      * @Route ("/create_sortie", name="createform")
      */
-    public function creerFormulaire(Request $request, EntityManagerInterface $entityManager): Response
+    public function creerFormulaire(Request $request, EntityManagerInterface $entityManager, ParticipantRepository $participantRepository): Response
     {
         $campus = new Campus();
         $sortie = new Sortie();
@@ -61,6 +62,9 @@ class CreationsortieController extends AbstractController
             $lieu->setVille($ville);
             $sortie->setLieu($lieu);
 
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $participant = $participantRepository->find($user->getId());
+            $sortie->setOrganisateur($participant);
 
             $entityManager->persist($campus);
             $entityManager->persist($ville);

@@ -47,7 +47,7 @@
 
         <div class="container ">
 
-{# <h4>Filtrer les sorties</h4>
+ <h4>Filtrer les sorties</h4>
             <div class="col-4">
                 Campus : <select name="Campus" id="pet-select">
                     <option value="choix1">saint herblain</option>
@@ -81,9 +81,9 @@
                 <button type="button" class="btn btn-outline-secondary">Filtrer</button>
 
             </div>
-        </div>#}
+        </div>
 
-            {{ dump(sorties) }}
+
 
         </div>
 
@@ -115,19 +115,23 @@
                 <td>{{ sortie.dateLimiteInscription|date('d-m-Y') }}</td>
                 <td>{{ sortie.participants.count }}/{{  sortie.nbInscriptionsMax }}</td>
                 <td>{{ sortie.etat }}</td>
-                <td>{{sortie.nom}}</td>
-                <td>{{ sortie.nom }}</td>
+                <td>
+                    {% if sortie.participants.contains(participant) %}
+                        X
+                    {% endif %}
+                </td>
+                <td>{{ sortie.organisateur.nom }} {{ sortie.organisateur.prenom }}</td>
                 <td>
                     <a href="details/{{ sortie.id }}">Afficher</a>
 
-
+                    {% if sortie.participants.contains(participant) %}
 
                     <a href="delParticip/{{ sortie.id }}">Se désister</a>
 
-
+                    {% else %}
 
                     <a href="regParticip/{{ sortie.id }}">S'inscrire</a>
-
+                    {% endif %}
                 </td>
             </tr>
 
