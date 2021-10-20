@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent()}} | Profil de {{ app.user.username }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {# TODO: asset('image de profil') #}
+            <img src="#" class="img-thumbnail" alt="Image de profil">
+        </div>
+    <div class="col">
+        <h2>{{ app.user.username }}</h2>
+        <br>
+        <br>
+        <div>Prénom : {{ app.user.prenom }}</div>
+        <br>
+        <div>Nom : {{ app.user.nom }}</div>
+        <br>
+        <div>Téléphone : {{ app.user.telephone }}</div>
+        <br>
+        <div>Email : {{ app.user.mail }}</div>
+        <br>
+        <div>Campus : {#  TODO: " app.user.campus " #}</div>
+        <br>
+        <a href="javascript:history.back()">
+            <button type="button" class="btn btn-primary">Retour</button>
+        </a>
+        <a href="{{ path('user_editProfil') }}">
+            <button type="button" class="btn btn-warning">Modifier profil</button>
+        </a>
+        <a href="{{ path('user_editPassword') }}">
+            <button type="button" class="btn btn-danger">Modifier mot de passe</button>
+        </a>
+    </div>
+    <div class="col">
+
+    </div>
+    </div>
+{% endblock %}

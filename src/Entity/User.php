@@ -56,6 +56,11 @@ class User implements UserInterface
      */
     private $mail;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $campus;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -175,4 +180,18 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getCampus(): ?string
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?string $campus): self
+    {
+        $this->campus = $campus;
+
+        return $this;
+    }
+
+    //TODO: getters/setters pour img
 }

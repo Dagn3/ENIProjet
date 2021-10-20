@@ -65,6 +65,8 @@ class CreationsortieController extends AbstractController
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $participant = $participantRepository->find($user->getId());
             $sortie->setOrganisateur($participant);
+            $sortie->addParticipant($participant);
+
 
             $entityManager->persist($campus);
             $entityManager->persist($ville);

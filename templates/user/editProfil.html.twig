@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+   {{ parent()}} | Profil de {{ app.user.username }}
+{% endblock %}
+
+{% block body %}
+        <div class="container">
+        <div class="row">
+            <div class="col">
+                {# TODO: asset('image de profil') #}
+                <img src="#" class="img-thumbnail" alt="Image de profil">
+            </div>
+            <div class="col">
+                <h1>Mon profil</h1>
+                <br>
+                {{ form_start(editProfilForm) }}
+
+                    {{ form_widget(editProfilForm) }}
+                    <button type="submit" class="btn btn-warning">Enregistrer</button>
+                    <button type="reset" class="btn btn-primary">Annuler</button>
+                {{ form_end(editProfilForm) }}
+            </div>
+
+            <div class="col">
+
+            </div>
+        </div>
+{% endblock %}

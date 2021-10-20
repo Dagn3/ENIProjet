@@ -78,7 +78,7 @@
             {% for participant in sortie.participants %}
                 <tr>
                     <td>{{ participant.username }}</td>
-                    <td>{{ participant.prenom }} {{ participant.nom }}</td>
+                    <td><a href="/ENIProjet/public/participants/{{ participant.id}} "> {{ participant.prenom }} {{ participant.nom }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>

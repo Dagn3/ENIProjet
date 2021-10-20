@@ -120,10 +120,13 @@
                         X
                     {% endif %}
                 </td>
-                <td>{{ sortie.organisateur.nom }} {{ sortie.organisateur.prenom }}</td>
+                <td><a href="/ENIProjet/public/participants/{{ participant.id}} "> {{ sortie.organisateur.nom }} {{ sortie.organisateur.prenom }}</a></td>
                 <td>
                     <a href="details/{{ sortie.id }}">Afficher</a>
 
+                    {% if sortie.organisateur == participant %}
+                    <a href="">Supprimer</a>
+                    {% else %}
                     {% if sortie.participants.contains(participant) %}
 
                     <a href="delParticip/{{ sortie.id }}">Se désister</a>
@@ -132,6 +135,7 @@
 
                     <a href="regParticip/{{ sortie.id }}">S'inscrire</a>
                     {% endif %}
+                        {% endif %}
                 </td>
             </tr>
 
