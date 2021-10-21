@@ -15,20 +15,44 @@
 
     <header>
         <!-- La NAVBAR -->
-        <nav class="navbar navbar-expand-sm bg-light">
-
-            <div class="container">
-
-                <a class="col-8 navbar-brand text-dark" href="#">Sortir.com</a>
-                <div class="col-4">
-                    <a class="text-dark" href="#">Villes</a>
-
-                    <a class="text-dark" href="#">Campus</a>
-                    <a class="text-dark" href="#">Accueil</a>
-                    <a class="text-dark" href="#">Mon profil</a>
-                    <a class="text-dark" href="#">Se déconnecter</a>
-                </div>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{path('list_sortie')}}">
+                    <img src="{{ asset('img/logo_eni.png') }}" alt="" width="54" height="54" class="d-inline-block align-text-top">
+                    Sortir.com
+                </a>
             </div>
+        </nav>
+        <nav>
+            <ul class="nav justify-content-end">
+                {# Liens dans la navbar, pour les admins uniquement.#}
+
+                {#  {%  if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ path('#') }}" title="Villes">Villes</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{{ path('#') }}" title="Campus">Campus</a>
+                    </li>
+                {% endif %}
+                #}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('list_sortie') }}" title="Accueil">Accueil</a>
+                </li>
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_profil', {'username': app.user.username}) }}" title="Profil">Mon profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}" title="Deconnecter">Se déconnecter</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}" title="Connecter">Se connecter</a>
+                    </li>
+                {% endif %}
+            </ul>
         </nav>
     </header>
 </head>

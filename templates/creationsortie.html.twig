@@ -7,8 +7,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="{{ asset('formulaireSortie.css') }}"
     <title><b>Créer une sortie</b></title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/4-col-portfolio.css" rel="stylesheet">
 </head>
 <body>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{path('list_sortie')}}">
+            <img src="{{ asset('img/logo_eni.png') }}" alt="" width="54" height="54" class="d-inline-block align-text-top">
+            Sortir.com
+        </a>
+    </div>
+</nav>
+<nav>
+    <ul class="nav justify-content-end">
+        {# Liens dans la navbar, pour les admins uniquement.#}
+
+        {#  {%  if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ path('#') }}" title="Villes">Villes</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{{ path('#') }}" title="Campus">Campus</a>
+                    </li>
+                {% endif %}
+        #}
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('list_sortie') }}" title="Accueil">Accueil</a>
+        </li>
+        {% if app.user %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('user_profil', {'username': app.user.username}) }}" title="Profil">Mon profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}" title="Deconnecter">Se déconnecter</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}" title="Connecter">Se connecter</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
 {% block main %}{% endblock %}
 {% block form %}{% endblock %}
 </body>

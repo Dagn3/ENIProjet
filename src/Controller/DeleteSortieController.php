@@ -16,7 +16,7 @@ class DeleteSortieController extends AbstractController
     /**
      * @Route("/delete/{id}", name="delete_sortie")
      */
-    public function delete (Sortie $sortie, Campus $campus, Lieu $lieu, Ville $ville)
+    public function delete (int $id, Sortie $sortie, Campus $campus, Lieu $lieu, Ville $ville): Response
     {
         $em = $this->getDoctrine()->getManager();
         $em -> remove($sortie);
